@@ -1,0 +1,13 @@
+# Labels for core/config/plugin.azure.settings.yml, merged into the Settings page.
+subscription:
+  label: Subscription
+  info: 'The subscription id or name the web apps live in (az account list).'
+tenant_id:
+  label: Tenant id
+  info: 'The Entra tenant of the service principal (optional when the host login is mounted).'
+client_id:
+  label: Service principal client id
+  info: 'An app registration with Contributor on the resource groups (optional when the host login is mounted). Read as AZURE_CLIENT_ID.'
+client_secret:
+  label: Service principal secret
+  info: 'Its secret. Read as AZURE_CLIENT_SECRET.'

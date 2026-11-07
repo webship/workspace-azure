@@ -1,0 +1,9 @@
+# The az CLI and its session, shared FROM THE HOST: one login, token refreshes land on
+# the host, rebuilds keep it. The bin DIRECTORY is mounted, not the file, so an update on the host
+# is live in the container at once. A machine without the CLI mounts an empty dir and the actions
+# say so.
+services:
+  web:
+    volumes:
+      - "${HOME}/.local/bin:/host-local-bin:ro"
+      - "${HOME}/.azure:/home/${USER}/.azure:rw"

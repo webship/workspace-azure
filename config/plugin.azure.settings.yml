@@ -1,0 +1,11 @@
+# Azure — core/config/plugin.azure.settings.yml
+#
+# The az CLI inside the dashboard container. Either the host's ~/.azure login (mounted) or a service principal for the dashboard; injected only into Azure jobs, never printed.
+# The subscription id or name the web apps live in (az account list).
+subscription: CHANGE_ME
+# The Entra tenant of the service principal (optional when the host login is mounted).
+tenant_id: CHANGE_ME
+# An app registration with Contributor on the resource groups (optional when the host login is mounted). Read as AZURE_CLIENT_ID.
+client_id: CHANGE_ME
+# Its secret. Read as AZURE_CLIENT_SECRET.
+client_secret: CHANGE_ME
