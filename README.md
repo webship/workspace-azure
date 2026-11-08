@@ -1,9 +1,9 @@
-# @webship/workspace-azure
+# @webship.co/workspace-azure
 
 Azure for the [Webship Workspace](https://github.com/webship/workspace) dashboard: the **AZURE**
 menu on every site row, a live-site chip on the project card, "Link to Azure" when a new folder is
 made, and the `cmd-tools-azure.sh` command in every site workspace. A provider of
-[`@webship/workspace-hosting`](https://github.com/webship/workspace-hosting), which draws the menu,
+[`@webship.co/workspace-hosting`](https://github.com/webship/workspace-hosting), which draws the menu,
 the environments modal, the get-database-and-files flow and the New-folder section for every host.
 
 App Service is the Azure product with environments the way the family understands them: a web app (production) and its deployment slots, each with a host name and a state. A deploy is a zip deploy of the current code to the chosen slot; the logs are `az webapp log tail`; the history is the deployment list. Azure Database for MySQL is not reachable generically from a laptop and App Service has no files mount of its own, so there is no `--pull-db` or `--pull-files`.

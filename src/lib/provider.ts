@@ -9,9 +9,9 @@
 
 import fs from 'fs';
 import path from 'path';
-import type { PluginApi, PluginLib } from '@webship/workspace-plugin-api';
-import { configured, findCli } from '@webship/workspace-hosting';
-import type { EnvInfo, EnvRow, HostingLink, HostingProvider } from '@webship/workspace-hosting';
+import type { PluginApi, PluginLib } from '@webship.co/workspace-plugin-api';
+import { configured, findCli } from '@webship.co/workspace-hosting';
+import type { EnvInfo, EnvRow, HostingLink, HostingProvider } from '@webship.co/workspace-hosting';
 
 import { azureLinkOf } from './link';
 
