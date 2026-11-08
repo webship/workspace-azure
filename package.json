@@ -1,12 +1,14 @@
 {
-  "name": "@webship/workspace-azure",
-  "version": "1.0.0",
-  "description": "Azure App Service for Webship Workspace: the AZURE menu on every site row, the web app and its deployment slots with their URLs, zip deploy, log tail, deployment history. A provider of @webship/workspace-hosting.",
+  "name": "@webship.co/workspace-azure",
+  "version": "1.0.0-alpha1",
+  "description": "Azure App Service for Webship Workspace: the AZURE menu on every site row, the web app and its deployment slots with their URLs, zip deploy, log tail, deployment history. A provider of @webship.co/workspace-hosting.",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
-  "private": true,
   "license": "ISC",
-  "repository": "github:webship/workspace-azure",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webship/workspace-azure.git"
+  },
   "files": [
     "dist/src",
     "commands",
@@ -73,11 +75,14 @@
     }
   },
   "dependencies": {
-    "@webship/workspace-hosting": "github:webship/workspace-hosting#1.0.x"
+    "@webship.co/workspace-hosting": "^1.0.0-alpha1"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
-    "@webship/workspace-plugin-api": "github:webship/workspace-plugin-api#1.0.x",
+    "@webship.co/workspace-plugin-api": "^1.0.0-alpha1",
     "typescript": "^5.9.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
