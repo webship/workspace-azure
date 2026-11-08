@@ -1,6 +1,6 @@
 {
   "name": "@webship.co/workspace-azure",
-  "version": "1.0.0-alpha1",
+  "version": "1.0.0-beta1",
   "description": "Azure App Service for Webship Workspace: the AZURE menu on every site row, the web app and its deployment slots with their URLs, zip deploy, log tail, deployment history. A provider of @webship.co/workspace-hosting.",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
@@ -75,11 +75,11 @@
     }
   },
   "dependencies": {
-    "@webship.co/workspace-hosting": "^1.0.0-alpha1"
+    "@webship.co/workspace-hosting": "^1.0.0-beta1"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
-    "@webship.co/workspace-plugin-api": "^1.0.0-alpha1",
+    "@webship.co/workspace-plugin-api": "^1.0.0-beta1",
     "typescript": "^5.9.0"
   },
   "publishConfig": {
