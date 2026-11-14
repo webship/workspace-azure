@@ -28,6 +28,23 @@
   "workspacePlugin": {
     "name": "azure",
     "label": "Azure",
+    "needs": {
+      "plugins": [
+        [
+          "dev",
+          "test",
+          "demos",
+          "sandboxes",
+          "projects"
+        ]
+      ],
+      "commands": [
+        {
+          "command": "az",
+          "hint": "https://learn.microsoft.com/cli/azure/install-azure-cli"
+        }
+      ]
+    },
     "settingsFile": "plugin.azure.settings.yml",
     "settingsTemplate": "config/plugin.azure.settings.yml",
     "labels": "config/settings.labels.yml",
