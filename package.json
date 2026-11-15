@@ -1,7 +1,7 @@
 {
   "name": "@webship.co/workspace-azure",
   "version": "1.0.8",
-  "description": "Azure App Service for Webship Workspace: the AZURE menu on every site row, the web app and its deployment slots with their URLs, zip deploy, log tail, deployment history. A provider of @webship.co/workspace-hosting.",
+  "description": "Azure App Service for Webship Workspace: the AZURE menu on every site row, the web app and its deployment slots with their URLs, zip deploy, log tail, deployment history. It carries its AI items, each placed in the workspace folder of its kind: an agent, a skill, a command and a prompt. A provider of @webship.co/workspace-hosting.",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "license": "ISC",
@@ -11,13 +11,15 @@
   },
   "files": [
     "dist/src",
+    "ai",
     "commands",
     "config",
     "features",
     "scripts",
     "README.md",
     "ddev",
-    "host-mounts.txt"
+    "host-mounts.txt",
+    "docs"
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -36,7 +38,11 @@
           "demos",
           "sandboxes",
           "projects"
-        ]
+        ],
+        "ai-agents",
+        "ai-skills",
+        "ai-commands",
+        "ai-prompts"
       ],
       "commands": [
         {
@@ -78,6 +84,20 @@
         "scripts/args/arg-azure.sh"
       ],
       "hostInstall": "scripts/host-install.sh"
+    },
+    "ai": {
+      "agents": [
+        "ai/agents/azure-deployer.md"
+      ],
+      "skills": [
+        "ai/skills/azure-hosting"
+      ],
+      "commands": [
+        "ai/commands/azure-status.md"
+      ],
+      "prompts": [
+        "ai/prompts/azure-test-then-deploy.md"
+      ]
     },
     "features": [
       "features/azure.feature"

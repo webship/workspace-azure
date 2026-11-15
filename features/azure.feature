@@ -18,3 +18,19 @@ Feature: The Azure plugin on a project row
     Given I am on "/settings/plugins"
      Then I should see "Azure"
       And I should see "@webship.co/workspace-azure"
+
+  Scenario: The AI Agents folder lists the agent the plugin ships
+    Given I am on "/ai-agents"
+     Then I should see "azure-deployer"
+
+  Scenario: The AI Skills folder lists the skill the plugin ships
+    Given I am on "/ai-skills"
+     Then I should see "azure-hosting"
+
+  Scenario: The AI Commands folder lists the command the plugin ships
+    Given I am on "/ai-commands"
+     Then I should see "azure-status"
+
+  Scenario: The AI Prompts folder lists the prompt the plugin ships
+    Given I am on "/ai-prompts"
+     Then I should see "azure-test-then-deploy"
