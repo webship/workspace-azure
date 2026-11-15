@@ -12,7 +12,7 @@ parser.add_argument('-p', '--push',
                     help='Deploy: zip the current code (git archive) and push it to the selected slot (az webapp deploy --type zip). Outward-facing: asks before deploying.')
 parser.add_argument('-e', '--environment',
                     default="_none_",
-                    help='Slot for THIS run: production, or a deployment slot's name. Default: the one remembered by --select.')
+                    help='Slot for THIS run: production, or a deployment slot\'s name. Default: the one remembered by --select.')
 parser.add_argument('-E', '--environments',
                     action='store_true',
                     default=False,
@@ -23,7 +23,7 @@ parser.add_argument('-s', '--select',
 parser.add_argument('-g', '--logs',
                     action='store_true',
                     default=False,
-                    help='Tail the selected slot's logs (az webapp log tail).')
+                    help='Tail the selected slot\'s logs (az webapp log tail).')
 parser.add_argument('-a', '--activities',
                     action='store_true',
                     default=False,
