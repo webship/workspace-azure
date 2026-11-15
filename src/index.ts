@@ -18,6 +18,12 @@ import { azureProvider } from './lib/provider';
 export { azureProvider };
 export { azureLinkOf } from './lib/link';
 
+/** The AI items the installer places: agents in ai-agents/, skills in ai-skills/, commands in ai-commands/, prompts in ai-prompts/. */
+export const AGENTS: string[] = ['azure-deployer'];
+export const SKILLS: string[] = ['azure-hosting'];
+export const AI_COMMANDS: string[] = ['azure-status'];
+export const PROMPTS: string[] = ['azure-test-then-deploy'];
+
 export function register(api: PluginApi): void {
   registerHosting(api, azureProvider(api));
 }
