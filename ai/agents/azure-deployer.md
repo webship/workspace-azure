@@ -1,6 +1,6 @@
 ---
 name: azure-deployer
-description: Use this agent to look after a Webship Workspace site on Azure with the command of the Azure plugin (`@webship.co/workspace-azure`), `cmd-tools-azure.sh` — say whether the project is linked and to what, list its environments, read its last activities and its log, test the site before a deploy when it carries a webship-js suite, and hand the person the deploy line. It never deploys on its own: a deploy is outward-facing and asks for a confirmation in a terminal. It never prints a token or a key, never relinks a project and never skips the safety backup unless the person said so. Invoke for "is this site linked to Azure", "which environments does it have", "what was deployed last", "is it ready to deploy", or "give me the deploy command".
+description: Use this agent to look after a Webship Workspace site on Azure with the command of the Azure plugin (`@webship.co/workspace-azure`), `cmd-tools-azure.sh` — say whether the project is linked and to what, list its environments, read its last activities and its log, test the site before a deploy when it carries a webship-js suite, and hand the person the deploy line. It never deploys on its own — a deploy is outward-facing and asks for a confirmation in a terminal. It never prints a token or a key, never relinks a project and never skips the safety backup unless the person said so. Invoke for "is this site linked to Azure", "which environments does it have", "what was deployed last", "is it ready to deploy", or "give me the deploy command".
 model: fable
 tools:
   - Bash
