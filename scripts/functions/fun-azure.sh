@@ -42,10 +42,13 @@ function azure_list_environments() {
 }
 
 function azure_do_environments() {
-  local project_path="$1";
+  local project_path="$1" row;
+  # Read first, then print: piped straight into awk, a failed az left awk's own success as the answer
+  # and an empty list on the screen.
   # shellcheck disable=SC2046
-  az webapp show -g "$(azure_rg "${project_path}")" -n "$(azure_app "${project_path}")" $(azure_sub) -o tsv --query '[name, state, defaultHostName]' 2>/dev/null \
-    | awk '{ printf "  %-24s %-10s https://%s\n", "production", tolower($2), $3 }' || { echo "  (could not read the web app — check az account show)"; return 1; } ;
+  row="$(az webapp show -g "$(azure_rg "${project_path}")" -n "$(azure_app "${project_path}")" $(azure_sub) -o tsv --query '[name, state, defaultHostName]' 2>/dev/null)" && [ -n "${row}" ] \
+    || { echo "  (could not read the web app — check az account show)"; return 1; } ;
+  printf '%s\n' "${row}" | awk '{ printf "  %-24s %-10s https://%s\n", "production", tolower($2), $3 }' ;
   # shellcheck disable=SC2046
   az webapp deployment slot list -g "$(azure_rg "${project_path}")" -n "$(azure_app "${project_path}")" $(azure_sub) -o tsv --query '[].[name, state, defaultHostName]' 2>/dev/null \
     | awk '{ printf "  %-24s %-10s https://%s\n", $1, tolower($2), $3 }' ;
@@ -80,19 +83,27 @@ function azure_do_activities() {
   # shellcheck disable=SC2046
   az webapp log deployment list -g "$(azure_rg "${project_path}")" -n "$(azure_app "${project_path}")" $(azure_sub) -o json 2>/dev/null | python3 -c 'import json,sys
 for d in json.load(sys.stdin)[:10]:
-    print("  %-20s %-10s %s" % ((d.get("received_time") or d.get("start_time") or "")[:19], "ok" if d.get("complete") else "running", (d.get("message") or d.get("id") or "")[:60]))' \
+    print("  %-20s %-10s %s" % ((d.get("received_time") or d.get("start_time") or "")[:19], "ok" if d.get("complete") else "running", (d.get("message") or d.get("id") or "")[:60]))' 2>/dev/null \
     || echo "  (could not list the deployments)" ;
 }
 
 function azure_status() {
-  local project_path="$1" id="$2";
+  local project_path="$1" id="$2" missing rc=0;
   if [ -z "${id}" ] ; then
     echo "    (the link is resource-group/web-app-name; az webapp list)";
     return 0 ;
   fi
   echo "";
-  azure_do_environments "${project_path}" ;
+  # Without az or its login nothing below can answer: say once what is missing, in ensure_azure's
+  # words, and fail. The link and the console are known here and still show.
+  if missing="$(ensure_azure)" ; then
+    azure_do_environments "${project_path}" || rc=1 ;
+  else
+    [ -n "${missing}" ] && sed 's/^/  /' <<< "${missing}" ;
+    rc=1 ;
+  fi
   echo "";
   echo "  Console: https://portal.azure.com/ → App Services → $(azure_app "${project_path}")";
   echo "  --push zip-deploys the committed tree to the selected slot; --logs tails it.";
+  return ${rc} ;
 }
