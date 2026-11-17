@@ -11,7 +11,7 @@
 #   azure_do_push <project_path> <id> <env>   deploy
 #   azure_do_logs <project_path> <id> <env>
 #   azure_do_activities <project_path> <id>
-#   azure_status <project_path> <id>          the closing status block
+#   azure_status <project_path> <id>          the closing status block; fails when the provider cannot be reached
 
 AZURE_LINK_FILE=".azure/workspace.yml";
 
@@ -152,7 +152,9 @@ function azure_project_tool() {
     azure_do_activities "${project_path}" "${linked_id}" || true ;
   fi
 
-  # Default (and after any verb): status.
+  # Default (and after any verb): status. The local part always shows; when the provider cannot be
+  # reached (no CLI, no login, no token), azure_status says what is missing and the run fails.
+  local status_rc=0;
   echo "";
   echo "*---------------------------------------------------------------------*";
   echo "  ${doc_name}/${PROJECT_NAME} on Azure";
@@ -165,9 +167,10 @@ function azure_project_tool() {
     local selected;
     selected="$(azure_selected_env "${project_path}")";
     echo "    env:     ${selected:-none selected — --environments then --select <name>}";
-    azure_status "${project_path}" "${linked_id}" ;
+    azure_status "${project_path}" "${linked_id}" || status_rc=1 ;
   fi
   echo "*---------------------------------------------------------------------*";
 
   cd "${WORKSPACE_ROOT}/${doc_name}";
+  return ${status_rc} ;
 }
